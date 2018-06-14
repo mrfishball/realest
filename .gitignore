@@ -9,4 +9,4 @@ node_modules
 static/.idea/*
 *.pyc
 tmp
-static/dist
+static/build
