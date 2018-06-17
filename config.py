@@ -8,8 +8,7 @@ class BaseConfig():
 
 class DevelopmentConfig(BaseConfig):
     # Development configuration.
-    MONGO_DBNAME = "realest_dev"
-    MONGO_URI = "mongodb://127.0.0.1"
+    MONGO_URI = "mongodb://127.0.0.1/realest_dev"
     MONGO_PORT = 27017
 
     TESTING = True

@@ -1,0 +1,65 @@
+db.createCollection("users", {
+   validator: {
+      $jsonSchema: {
+         bsonType: "object",
+         required: ["email", "name", "password"],
+         properties: {
+            email: {
+               bsonType: "string",
+               description: "E-mail field must be a string and is required"
+            },
+            name: {
+               bsonType: "string",
+               description: "Name field must be a string and is required"
+            },
+            password: {
+               bsonType: "string",
+               description: "Password field must be an string and is required"
+            },
+            offered: {
+               bsonType: ["array"],
+               items: {
+                 bsonType: "objectId",
+                 description: "Items must be of objectId type and is not required"
+               },
+               description: "Offered field can only be one of the enum values and is required"
+            }
+         }
+      }
+   },
+   validationLevel: "strict",
+   validationAction: "error"
+})
+
+db.createCollection("broker", {
+   validator: {
+      $jsonSchema: {
+         bsonType: "object",
+         required: ["email", "name", "password"],
+         properties: {
+            email: {
+               bsonType: "string",
+               description: "E-mail field must be a string and is required"
+            },
+            name: {
+               bsonType: "string",
+               description: "Name field must be a string and is required"
+            },
+            password: {
+               bsonType: "string",
+               description: "Password field must be an string and is required"
+            },
+            offered: {
+               bsonType: ["array"],
+               items: {
+                 bsonType: "objectId",
+                 description: "Items must be of objectId type and is not required"
+               },
+               description: "Offered field can only be one of the enum values and is required"
+            }
+         }
+      }
+   },
+   validationLevel: "strict",
+   validationAction: "error"
+})
