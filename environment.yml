@@ -28,8 +28,10 @@ dependencies:
 - pip:
   - aniso8601==3.0.2
   - bcrypt==3.1.4
+  - blinker==1.4
   - cffi==1.11.5
   - flask-bcrypt==0.7.1
+  - flask-mail==0.9.1
   - flask-pymongo==0.5.2
   - flask-restful==0.3.6
   - pycparser==2.18

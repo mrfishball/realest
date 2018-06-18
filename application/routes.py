@@ -1,4 +1,5 @@
 from flask import render_template
+from application.utils import auth
 from application import app
 
 @app.route("/")

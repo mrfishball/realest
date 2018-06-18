@@ -11,6 +11,12 @@ class DevelopmentConfig(BaseConfig):
     MONGO_URI = "mongodb://127.0.0.1/realest_dev"
     MONGO_PORT = 27017
 
+    MAIL_SERVER = "smtp.googlemail.com"
+    MAIL_PORT = 587
+    MAIL_USE_TLS = True
+    MAIL_USERNAME = os.environ.get("EMAIL_USER")
+    MAIL_PASSWORD = os.environ.get("EMAIL_PASS")
+
     TESTING = True
     DEBUG = True
     WTF_CSRF_ENABLED = False
