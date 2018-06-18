@@ -15,5 +15,7 @@ mail = Mail(app)
 
 from application import routes
 from application.APIs.registerAPI import RegisterAPI
+from application.APIs.emailConfirmAPI import ConfirmAPI
 
-api.add_resource(RegisterAPI, "/realest/api/v1.0/register")
+api.add_resource(RegisterAPI, "/realest/api/v1.0/register", endpoint="register")
+api.add_resource(ConfirmAPI, "/realest/api/v1.0/confirm_email/<token>", endpoint="email_confirm")

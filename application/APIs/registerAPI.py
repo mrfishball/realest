@@ -1,7 +1,6 @@
-from flask import request, jsonify
-from flask_restful import Resource, reqparse, fields, marshal
-from application import mongo, bcrypt, api, mail
-
+from flask_restful import Resource, reqparse
+from application import mongo, bcrypt
+from application.utils.email import send_email_confirmation
 class RegisterAPI(Resource):
 
     def __init__(self):
@@ -24,4 +23,5 @@ class RegisterAPI(Resource):
             last_name = args["lastName"]
             password_hash = bcrypt.generate_password_hash(args["password"]).decode("utf-8")
             new_user = mongo.db.users.insert({ "firstName": first_name, "lastName": last_name, "email": email, "password": password_hash })
+            send_email_confirmation(email)
             return { "status": "success", "message": "New user registered successfully." }, 201

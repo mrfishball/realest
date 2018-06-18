@@ -1,3 +1,5 @@
+curl -i -H "Content-Type: application/json" -X POST -d @param.json http://localhost:5000/realest/api/v1.0/register
+
 db.createCollection("users", {
    validator: {
       $jsonSchema: {
