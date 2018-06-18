@@ -26,7 +26,15 @@ dependencies:
 - xz=5.2.4=h1de35cc_4
 - zlib=1.2.11=hf3cbc9b_2
 - pip:
+  - aniso8601==3.0.2
+  - bcrypt==3.1.4
+  - cffi==1.11.5
+  - flask-bcrypt==0.7.1
   - flask-pymongo==0.5.2
+  - flask-restful==0.3.6
+  - pycparser==2.18
   - pymongo==3.6.1
+  - pytz==2018.4
+  - six==1.11.0
 prefix: /Users/steventuetpiukwok/anaconda3/envs/realest
 
