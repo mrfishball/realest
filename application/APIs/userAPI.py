@@ -1,5 +1,6 @@
 from flask_restful import Resource, reqparse
 from application import mongo, bcrypt, models
+from application.utils.token import TWO_WEEKS, generate_token
 
 class UserAPI(Resource):
 
@@ -10,7 +11,13 @@ class UserAPI(Resource):
         self.reqparse.add_argument("confirm_password", required=True, help="Password confirm field required", location="json")
         super(UserAPI, self).__init__()
 
-    def post(self, token):
+    def post(self):
         args = self.reqparse.parse_args()
         email = args["email"]
-        user = models.get_user_with_email(email)
+        password = args["password"]
+        confirm_pass = args["confirm_password"]
+        user = models.verify_user(email, password, confirm_pass)
+        if user:
+            return { "status": "success", "message": user, "token": generate_token(user, TWO_WEEKS) }, 202
+
+        return { "status": "error", "message": "Email or password does not match." }, 403
