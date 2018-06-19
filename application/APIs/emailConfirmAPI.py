@@ -1,6 +1,6 @@
 from flask_restful import Resource, reqparse
-from application import mongo
-from application.utils.token import confirm_email
+from application import mongo, models
+from application.utils.token import confirm_token
 
 class ConfirmAPI(Resource):
 
@@ -8,10 +8,10 @@ class ConfirmAPI(Resource):
         super(ConfirmAPI, self).__init__()
 
     def get(self, token):
-        email = confirm_email(token)
-        print(email)
-        existing_email = mongo.db.users.find_one({ "email": email })
+        payload = confirm_token(token)
+        existing_email = models.get_user_with_email(payload)
         if existing_email:
-            return { "status": "success", "message": "Email confirmed." }, 201
+            update = mongo.db.users.update({ "email": payload }, { "$set": { "confirmed": True } })
+            return { "status": "success", "message": "Email confirmed.", "payload": update }, 201
         else:
-            return { "status": "error", "message": "Token expired." }, 403
+            return payload

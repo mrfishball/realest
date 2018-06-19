@@ -1,10 +1,10 @@
 from flask import url_for
 from flask_mail import Message
 from application import mail
-from application.utils.token import generate_confirmation_token
+from application.utils.token import generate_token
 
 def send_email_confirmation(email):
-    token = generate_confirmation_token(email)
+    token = generate_token(email)
     msg = Message("Email Verification Required", sender="Real-Est Dev", recipients=[email])
     msg.body = '''
     You’re almost there, just one last step to make sure we have all your information.

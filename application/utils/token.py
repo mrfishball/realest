@@ -1,14 +1,20 @@
-from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
+from itsdangerous import TimedJSONWebSignatureSerializer as Serializer, BadSignature, SignatureExpired
 from application import app
 
-def generate_confirmation_token(email, expires_sec=3600):
-    s = Serializer(app.config["SECRET_KEY"], expires_sec)
+FIVE_HOURS = 18000
+TWO_WEEKS = 1209600
+
+def generate_token(email, expiration=FIVE_HOURS):
+    # Token expires after 5 hours
+    s = Serializer(app.config["SECRET_KEY"], expires_in=expiration)
     return s.dumps(email).decode("utf-8")
 
-def confirm_email(token):
+def confirm_token(token):
     s = Serializer(app.config["SECRET_KEY"])
     try:
-        email = s.loads(token)
-    except:
-        return None
-    return email
+        target = s.loads(token)
+    except SignatureExpired:
+        return { "status": "error", "message": "Token expired." }  # valid token, but expired
+    except BadSignature:
+        return { "status": "error", "message": "Invalid token." }  # invalid token
+    return target

@@ -17,8 +17,5 @@ class DevelopmentConfig(BaseConfig):
     MAIL_USERNAME = os.environ.get("MAIL_USER")
     MAIL_PASSWORD = os.environ.get("MAIL_PASS")
 
-    TESTING = True
+    # TESTING = True
     DEBUG = True
-    WTF_CSRF_ENABLED = False
-    DEBUG_TB_ENABLED = True
-    PRESERVE_CONTEXT_ON_EXCEPTION = False

@@ -4,7 +4,7 @@ db.createCollection("users", {
    validator: {
       $jsonSchema: {
          bsonType: "object",
-         required: ["firstName", "lastName", "email", "password"],
+         required: ["firstName", "lastName", "email", "password", "confirmed"],
          properties: {
             firstName: {
                bsonType: "string",
@@ -21,6 +21,10 @@ db.createCollection("users", {
             password: {
                bsonType: "string",
                description: "Password field must be an string and is required"
+            },
+            confirmed: {
+               bsonType: "bool",
+               description: "Confirmed field must be an string and is required"
             },
             offered: {
                bsonType: ["array"],
