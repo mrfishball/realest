@@ -1,13 +1,23 @@
 from application import mongo, bcrypt
+from application.utils.email import send_email_confirmation
 
 def get_user_with_email(email):
     user = mongo.db.users.find_one({ "email": email })
     return user
 
-def verify_user(email, password, confirm_password):
+def verify_user_and_password(email, password):
     user = get_user_with_email(email)
     if user:
-        if password == confirm_password:
-            if bcrypt.check_password_hash(user["password"], password):
-                return user
+        if bcrypt.check_password_hash(user["password"], password):
+            return user
+    return None
+
+def register_user(firstName, lastName, email, password, confirm_password):
+    existing_user = get_user_with_email(email)
+    if existing_user is None:
+        password_hash = bcrypt.generate_password_hash(password).decode("utf-8")
+        user = mongo.db.users.insert({ "firstName": firstName, "lastName": lastName, "email": email, "password": password_hash, "confirmed": False })
+        send_email_confirmation(email)
+        return user
+
     return None

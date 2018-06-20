@@ -15,9 +15,11 @@ mail = Mail(app)
 
 from application import routes
 from application.APIs.registerAPI import RegisterAPI
-from application.APIs.emailConfirmAPI import ConfirmAPI
-from application.APIs.userAPI import UserAPI
+from application.APIs.confirmEmailAPI import ConfirmEmailAPI
+from application.APIs.confirmTokenAPI import ConfirmTokenAPI
+from application.APIs.userSignInAPI import SignInAPI
 
 api.add_resource(RegisterAPI, "/realest/api/v1.0/register", endpoint="register")
-api.add_resource(ConfirmAPI, "/realest/api/v1.0/confirm_email/<token>", endpoint="email_confirm")
-api.add_resource(UserAPI, "/realest/api/v1.0/sign_in_with_token", endpoint="signin")
+api.add_resource(ConfirmEmailAPI, "/realest/api/v1.0/confirm_email/<token>", endpoint="email_confirm")
+api.add_resource(confirmTokenAPI, "/realest/api/v1.0/confirm_token/<token>", endpoint="token_confirm")
+api.add_resource(SignInAPI, "/realest/api/v1.0/get_token", endpoint="signin")

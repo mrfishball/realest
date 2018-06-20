@@ -1,6 +1,7 @@
 {
-  "firstName":"Connie",
+  "firstName":"Diffany",
   "lastName":"Chang",
-  "email":"skwok@nyit.edu",
-  "password":"password2"
+  "email":"mrsfishball@gmail.com",
+  "password":"password3",
+  "confirm_password":"password3"
 }

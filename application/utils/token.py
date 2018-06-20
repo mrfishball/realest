@@ -12,9 +12,9 @@ def generate_token(email, expiration=FIVE_HOURS):
 def confirm_token(token):
     s = Serializer(app.config["SECRET_KEY"])
     try:
-        target = s.loads(token)
+        payload = s.loads(token)
     except SignatureExpired:
-        return { "status": "error", "message": "Token expired." }  # valid token, but expired
+        return None  # valid token, but expired
     except BadSignature:
-        return { "status": "error", "message": "Invalid token." }  # invalid token
-    return target
+        return None  # invalid token
+    return payload
