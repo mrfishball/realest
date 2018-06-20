@@ -17,6 +17,6 @@ class SignInAPI(Resource):
         password = args["password"]
         user = models.verify_user_and_password(email, password)
         if user:
-            return { "status": "success", "message": "Logged in as {}".format(str(user["name"])), "token": generate_token(str(user["_id"]), TWO_WEEKS) }, 202
+            return { "status": "success", "message": "Logged in as {}".format(str(user["email"])), "confirmed": user["confirmed"], "token": generate_token(str(user["_id"]), TWO_WEEKS) }, 202
 
         return { "status": "error", "message": "Email or password does not match." }, 403
