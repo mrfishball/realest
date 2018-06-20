@@ -22,7 +22,8 @@ class RegisterAPI(Resource):
         password = args["password"]
         confirm_password = args["confirm_password"]
         if password == confirm_password:
-            user = models.register_user(firstName, lastName, email, password, confirm_password)
+            user = models.register_user(firstName, lastName, email, password)
+            print(user)
             if user:
                 return { "status": "success", "message": "New user registered successfully." }, 201
 

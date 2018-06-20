@@ -4,7 +4,7 @@ class BaseConfig():
     BASEDIR = os.path.dirname(os.path.realpath(__file__))
     TEMPLATE_DIR = os.path.join("%s/static" % BASEDIR, "build")
     STATIC_DIR = os.path.join("%s/" % TEMPLATE_DIR, "static")
-    SECRET_KEY = "e6e3b96c6b9c6c2436da30ef122cfe74"
+    SECRET_KEY = os.environ.get("SECRET_KEY")
 
 class DevelopmentConfig(BaseConfig):
     # Development configuration.

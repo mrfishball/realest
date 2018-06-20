@@ -11,7 +11,7 @@ def send_email_confirmation(email):
     You entered {} as the email address for your RealEst account during the sign-up process.
     If this is you, just click on the link below and you're ready to go.
 
-    {}
+        {}
 
     Thanks,
     Team RealEst

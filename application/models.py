@@ -12,12 +12,11 @@ def verify_user_and_password(email, password):
             return user
     return None
 
-def register_user(firstName, lastName, email, password, confirm_password):
+def register_user(firstName, lastName, email, password):
     existing_user = get_user_with_email(email)
-    if existing_user is None:
-        password_hash = bcrypt.generate_password_hash(password).decode("utf-8")
-        user = mongo.db.users.insert({ "firstName": firstName, "lastName": lastName, "email": email, "password": password_hash, "confirmed": False })
-        send_email_confirmation(email)
-        return user
-
-    return None
+    if existing_user:
+        return None
+    password_hash = bcrypt.generate_password_hash(password).decode("utf-8")
+    new_user = mongo.db.users.insert({ "firstName": firstName, "lastName": lastName, "email": email, "password": password_hash, "confirmed": False })
+    send_email_confirmation(email)
+    return new_user
