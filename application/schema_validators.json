@@ -1,5 +1,5 @@
 curl -i -H "Content-Type: application/json" -X POST -d @param.json http://localhost:5000/realest/api/v1.0/register
-curl -i -H "Content-Type: application/json" -X POST -d @login.json http://localhost:5000/realest/api/v1.0/get_token
+curl -i -H "Content-Type: application/json" -X POST -d @login.json http://localhost:5000/realest/api/v1.0/sign_in
 curl http://localhost:5000/realest/api/v1.0/confirm_token/eyJleHAiOjE1MzA2NzYyMjYsImlhdCI6MTUyOTQ2NjYyNiwiYWxnIjoiSFMyNTYifQ.IjViMjljZTlmZjVlYzRlMTFkM2M2NmRkNiI.Zx4WKo1vvt8TVRfHyaPwsDj4v4Fup3Cwtqnfj4Hu2kI
 
 db.createCollection("users", {

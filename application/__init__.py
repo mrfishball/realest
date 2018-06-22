@@ -22,4 +22,4 @@ from application.APIs.userSignInAPI import SignInAPI
 api.add_resource(RegisterAPI, "/realest/api/v1.0/register", endpoint="register")
 api.add_resource(ConfirmEmailAPI, "/realest/api/v1.0/confirm_email/<token>", endpoint="email_confirm")
 api.add_resource(ConfirmTokenAPI, "/realest/api/v1.0/confirm_token/<token>", endpoint="token_confirm")
-api.add_resource(SignInAPI, "/realest/api/v1.0/get_token", endpoint="signin")
+api.add_resource(SignInAPI, "/realest/api/v1.0/sign_in", endpoint="signin")

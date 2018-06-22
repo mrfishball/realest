@@ -10,7 +10,7 @@ class RegisterAPI(Resource):
         self.reqparse.add_argument("lastName", type=str, required=True, help="Last name field required", location="json")
         self.reqparse.add_argument("email", type=str, required=True, help="Email field required", location="json")
         self.reqparse.add_argument("password", type=str, required=True, help="Password field required", location="json")
-        self.reqparse.add_argument("confirm_password", required=True, help="Password confirm field required", location="json")
+        self.reqparse.add_argument("confirm_password", type=str, required=True, help="Password confirm field required", location="json")
 
         super(RegisterAPI, self).__init__()
 
@@ -23,7 +23,6 @@ class RegisterAPI(Resource):
         confirm_password = args["confirm_password"]
         if password == confirm_password:
             user = models.register_user(firstName, lastName, email, password)
-            print(user)
             if user:
                 return { "status": "success", "message": "New user registered successfully." }, 201
 
