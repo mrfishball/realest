@@ -17,7 +17,7 @@ from application import routes
 from application.APIs.registerAPI import RegisterAPI
 from application.APIs.confirmEmailAPI import ConfirmEmailAPI
 from application.APIs.confirmTokenAPI import ConfirmTokenAPI
-from application.APIs.userSignInAPI import SignInAPI
+from application.APIs.signInAPI import SignInAPI
 
 api.add_resource(RegisterAPI, "/realest/api/v1.0/register", endpoint="register")
 api.add_resource(ConfirmEmailAPI, "/realest/api/v1.0/confirm_email/<token>", endpoint="email_confirm")
